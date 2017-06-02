@@ -16,13 +16,27 @@ function qxg($str)
 }
 
 $namess = end(explode('/', $_SERVER['PHP_SELF']));
+/**
+ * 判断是否一就那个登录
+ */
 if ($_COOKIE['x_Cookie'] == $用户名 and $_COOKIE['y_Cookie'] == $密码){
-}else{
+
+//do...
+
+} else{
+/**
+ * 如果没有登录
+ */
 if (!empty($_POST['adminname'])){
+
     if ($_POST['password'] == $密码 & $_POST['adminname'] == $用户名) {
+        //设置cookie用于保存输入的用户名和密码
         setcookie("y_Cookie", $密码);
         setcookie("x_Cookie", $用户名);
     } else {
+        /**
+         * 提示登录失败信息
+         */
         echo "<script>alert('用户名或密码错误!!!');location.href='" . $_SERVER["HTTP_REFERER"] . "';</script>";
         exit;
     }
@@ -47,23 +61,23 @@ if (!empty($_POST['adminname'])){
                                     <form action="./<?php echo $namess; ?>" id="TANGRAM__PSP_8__form"
                                           class="pass-form pass-form-normal" method="POST" autocomplete="off">
                                         <p id="TANGRAM__PSP_8__errorWrapper" class="pass-generalErrorWrapper"><span
-                                                    id="TANGRAM__PSP_8__error"
-                                                    class="pass-generalError pass-generalError-error"></span></p>
+                                                id="TANGRAM__PSP_8__error"
+                                                class="pass-generalError pass-generalError-error"></span></p>
 
                                         <p id="TANGRAM__PSP_8__userNameWrapper"
                                            class="pass-form-item pass-form-item-userName" style="display:"><input
-                                                    id="TANGRAM__PSP_8__userName" type="text" name="adminname"
-                                                    class="pass-text-input pass-text-input-userName" autocomplete="off"
-                                                    placeholder=""></p>
+                                                id="TANGRAM__PSP_8__userName" type="text" name="adminname"
+                                                class="pass-text-input pass-text-input-userName" autocomplete="off"
+                                                placeholder=""></p>
                                         <p id="TANGRAM__PSP_8__passwordWrapper"
                                            class="pass-form-item pass-form-item-password" style="display:"><input
-                                                    id="TANGRAM__PSP_8__password" type="password" name="password"
-                                                    class="pass-text-input pass-text-input-password" placeholder=""></p>
+                                                id="TANGRAM__PSP_8__password" type="password" name="password"
+                                                class="pass-text-input pass-text-input-password" placeholder=""></p>
 
                                         <p id="TANGRAM__PSP_8__submitWrapper"
                                            class="pass-form-item pass-form-item-submit"><input
-                                                    id="TANGRAM__PSP_8__submit" type="submit" value="登录"
-                                                    class="pass-button pass-button-submit">
+                                                id="TANGRAM__PSP_8__submit" type="submit" value="登录"
+                                                class="pass-button pass-button-submit">
                                         </p>
                                     </form>
                                 </div>
@@ -84,6 +98,12 @@ if (!empty($_POST['adminname'])){
 }
 } ?>
 
+<!--登录结束-->
+
+
+<!--后台首页开始-->
+
+
 <?php
 if (empty($_GET['sort'])) {
     $_GET['sort'] = 'index';
@@ -96,10 +116,16 @@ if (empty($_GET['sort'])) {
          style="top: 40px; width:80%">
 
         <div class="tang-foreground" id="TANGRAM__PSP_2__foreground" style="width:100%">
-            <div style='background-color:#f7f7f7; border:1px solid #ddd; border-width:1px 1px 0 1px;height:35px; font-size:20px; padding-top:20px; padding-left:20px; padding-right:20px; text-align:center'>
+            <div
+                style='background-color:#f7f7f7; border:1px solid #ddd; border-width:1px 1px 0 1px;height:35px; font-size:20px; padding-top:20px; padding-left:20px; padding-right:20px; text-align:center'>
 
-                <strong><a href="../index.php">网站首页</a> <a href="?">后台首页</a> <a href="?sort=set">设置引导</a> <a
-                            href="?sort=admin">账号密码</a> <a href="javascript:history.back(-1)">返回上一页</a></strong>
+                <strong>
+                    <a href="../index.php">网站首页</a>
+                    <a href="?">后台首页</a>
+                    <a href="?sort=set">设置引导</a>
+                    <a href="?sort=admin">账号密码</a>
+                    <a href="javascript:history.back(-1)">返回上一页</a>
+                </strong>
             </div>
             <div class="tang-body" id="TANGRAM__PSP_2__body">
                 <div class="tang-content" id="TANGRAM__PSP_2__content">
@@ -111,7 +137,21 @@ if (empty($_GET['sort'])) {
                                         <?php if ($_GET['sort'] == 'set') {
                                             include './config.php';
 
-                                            $strm = array(array('网站名称', 'sitename', '输入网站全名'), array('邮箱', 'email', '输入邮箱'), array('短名', 'simplename', '简短名称'), array('网站地址', 'siteurl', '输入网站完整地址，开头带http'), array('缓存更新时间', 'hcgx', '输入数据缓存更新时间，纯数字，单位为小时'), array('友情链接', 'link', '格式：筱瞳影视,http://tv.hez70.com|||筱瞳影视,http://tv.hez70.com'), array('网站标题', 'bt', '支持yk[key]等模板标签'), array('网站关键字', 'key', '支持yk[key]等模板标签'), array('网站描述', 'ms', '支持yk[key]等模板标签'), array('解析地址', 'url', '按格式 地址1|地址2|地址3等填写'), array('统计代码', 'tongji', '输入统计代码'), array('广告管理', 'js', '按格式 广告1代码|||广告2代码|||广告3代码|||广告4代码等填写'), array('公告管理', 'gg', '填写公告文字信息'));
+                                            $strm = array(
+                                                array('网站名称', 'sitename', '输入网站全名'),
+                                                array('邮箱', 'email', '输入邮箱'),
+                                                array('短名', 'simplename', '简短名称'),
+                                                array('网站地址', 'siteurl', '输入网站完整地址，开头带http'),
+                                                array('缓存更新时间', 'hcgx', '输入数据缓存更新时间，纯数字，单位为小时'),
+                                                array('友情链接', 'link', '格式：筱瞳影视,http://tv.hez70.com|||筱瞳影视,http://tv.hez70.com'),
+                                                array('网站标题', 'bt', '支持yk[key]等模板标签'),
+                                                array('网站关键字', 'key', '支持yk[key]等模板标签'),
+                                                array('网站描述', 'ms', '支持yk[key]等模板标签'),
+                                                array('解析地址', 'url', '按格式 地址1|地址2|地址3等填写'),
+                                                array('统计代码', 'tongji', '输入统计代码'),
+                                                array('广告管理', 'js', '按格式 广告1代码|||广告2代码|||广告3代码|||广告4代码等填写'),
+                                                array('公告管理', 'gg', '填写公告文字信息')
+                                            );
                                             ?>
 
 
@@ -133,9 +173,9 @@ if (empty($_GET['sort'])) {
                                                 ?>
                                                 <br><p id="TANGRAM__PSP_8__submitWrapper"
                                                        class="pass-form-item pass-form-item-submit"> <p
-                                                        id="TANGRAM__PSP_8__submit"
-                                                        class="pass-button pass-button-submit"
-                                                        style="padding-top:25px;">设置成功</p></p><br><?php exit;
+                                                    id="TANGRAM__PSP_8__submit"
+                                                    class="pass-button pass-button-submit"
+                                                    style="padding-top:25px;">设置成功</p></p><br><?php exit;
                                             } ?>
                                             <form action="?sort=set&mod=save" method="POST">
                                             <p id="TANGRAM__PSP_8__errorWrapper" class="pass-generalErrorWrapper">
@@ -182,8 +222,8 @@ if (empty($_GET['sort'])) {
 
                                             <p id="TANGRAM__PSP_8__submitWrapper"
                                                class="pass-form-item pass-form-item-submit"><input
-                                                        id="TANGRAM__PSP_8__submit" type="submit" value="确定"
-                                                        class="pass-button pass-button-submit">
+                                                    id="TANGRAM__PSP_8__submit" type="submit" value="确定"
+                                                    class="pass-button pass-button-submit">
                                             </p>
                                             </form><?php } elseif ($_GET['sort'] == 'admin') { ?>
 
@@ -197,9 +237,9 @@ if (empty($_GET['sort'])) {
                                                 ?>
                                                 <br><p id="TANGRAM__PSP_8__submitWrapper"
                                                        class="pass-form-item pass-form-item-submit"> <p
-                                                        id="TANGRAM__PSP_8__submit"
-                                                        class="pass-button pass-button-submit"
-                                                        style="padding-top:25px;"><?php if ($zt == 'n') {
+                                                    id="TANGRAM__PSP_8__submit"
+                                                    class="pass-button pass-button-submit"
+                                                    style="padding-top:25px;"><?php if ($zt == 'n') {
                                                         echo '用户名或密码不能为空！';
                                                     } else {
                                                         echo '修改成功';
@@ -239,8 +279,8 @@ if (empty($_GET['sort'])) {
                                                 </p>
                                                 <p id="TANGRAM__PSP_8__submitWrapper"
                                                    class="pass-form-item pass-form-item-submit"><input
-                                                            id="TANGRAM__PSP_8__submit" type="submit" value="确定"
-                                                            class="pass-button pass-button-submit">
+                                                        id="TANGRAM__PSP_8__submit" type="submit" value="确定"
+                                                        class="pass-button pass-button-submit">
                                                 </p>
                                             </form>
                                         <?php } elseif ($_GET['sort'] == 'index') { ?>
