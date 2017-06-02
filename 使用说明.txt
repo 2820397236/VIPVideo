@@ -13,4 +13,4 @@ inc/mydb.inc.php  文件修改数据库配置
 后台地址 域名/admin/
 后台管理员帐号密码  admin  admin
 
-演示网站 http://vip.ka61.cn
+演示网站 http://vip.52kotlin.com
